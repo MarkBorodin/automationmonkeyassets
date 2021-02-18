@@ -8,6 +8,7 @@
  *
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
+$monkeys_version = true;
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,16 +40,18 @@
 
             <!-- start: app-footer(need to put on top of #app-content)-->
             <footer id="app-footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xs-6 text-muted">&copy; <?php echo date('Y');?> Marketing Monkeys </div>
-                        <div class="col-xs-6 text-muted text-right small">v<?php
-                            /** @var \Mautic\CoreBundle\Templating\Helper\VersionHelper $version */
-                            $version = $view['version'];
-                            echo $version->getVersion(); ?>
+                <?php if ( !$monkeys_version ): ?>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-6 text-muted">&copy; <?php echo date('Y');?> Marketing Monkeys </div>
+                            <div class="col-xs-6 text-muted text-right small">v<?php
+                                /** @var \Mautic\CoreBundle\Templating\Helper\VersionHelper $version */
+                                $version = $view['version'];
+                                echo $version->getVersion(); ?>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endif ?>
             </footer>
             <!--/ end: app-footer -->
 
