@@ -11,7 +11,7 @@
 $monkeys_version = true;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo substr( $app->getUser()->getLocale(), 0, 2 ); ?>">
     <?php echo $view->render('MauticCoreBundle:Default:head.html.php'); ?>
     <body class="header-fixed">
         <!-- start: app-wrapper -->
