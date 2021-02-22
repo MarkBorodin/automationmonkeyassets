@@ -338,6 +338,12 @@ form[name="passwordreset"] .has-error .help-block {
     .user-login-screen__map {
         width: 85%;
     }
+
+    .user-login-screen__buttons {
+        align-items: flex-end;
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
 }
 
 /*-----------
