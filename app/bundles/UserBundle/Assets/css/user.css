@@ -134,8 +134,16 @@ span.input-group-addon i.fa {
     transition: transform .3s ease-in-out;
 }
 
-.user-login-screen__forgot:hover {
+.user-login-screen__forgot:hover,
+.user-login-screen__forgot:focus,
+.user-login-screen__back:hover,
+.user-login-screen__back:focus {
     color: #fff;
+}
+
+.user-login-screen__forgot:focus,
+.user-login-screen__back:focus {
+    outline: none;
 }
 
 .user-login-screen__forgot:hover::after {
@@ -149,7 +157,18 @@ span.input-group-addon i.fa {
     margin-left: auto;
     margin-bottom: 15px;
     border: none;
+    padding: 0;
     background: transparent;
+}
+
+.user-login-screen__submit__wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.user-login-screen__submit__wrapper button {
+    margin: 0;
 }
 
 .user-login-screen__submit:hover .user-login-screen__submit__arrow {
@@ -167,6 +186,12 @@ span.input-group-addon i.fa {
     border-radius: 50%;
     transition: all .4s ease-in-out;
     transform: rotate(0deg);
+}
+
+.user-login-screen__submit__arrow--reverse {
+    margin-left: 0;
+    margin-right: 15px;
+    transform: rotate(180deg);
 }
 
 .user-login-screen__submit__arrow::after {
@@ -209,6 +234,27 @@ span.input-group-addon i.fa {
     left: -110px;
     bottom: 140px;
     width: 60%;
+}
+
+.user-login-screen__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-login-screen__back {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.user-login-screen__back:hover .user-login-screen__submit__arrow {
+    transform: rotate(-180deg);
+}
+
+form[name="passwordreset"] .has-error .help-block {
+    color: #67e9ff;
 }
 
 /*-----------

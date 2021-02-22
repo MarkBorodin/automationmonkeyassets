@@ -53,7 +53,7 @@ endif;
     </div>
 
     <button class="user-login-screen__submit user-login-screen__text"
-            type="submit">
+                     type="submit">
         <?php echo $view['translator']->trans('mautic.user.auth.form.loginbtn'); ?>
         <span class="user-login-screen__submit__arrow"></span>
     </button>
