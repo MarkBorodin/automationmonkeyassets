@@ -122,12 +122,16 @@
     padding-left: 15px;
     padding-right: 15px;
 
+    &__logo {
+      max-width: 100%;
+    }
+
     // sidebar header fixed
     .header-fixed & {
       position: absolute;
       top: 0;
+      display: flex;
       box-shadow: 0 1px 0 0 rgba(0,0,0,0.06);
-      //box-shadow: 0 5px 5px -5px rgba(0,0,0,0.15), 0 1px 0 rgba(0,0,0,0.03);
     }
 
     // add top space to `sidebar-content` if header is present
