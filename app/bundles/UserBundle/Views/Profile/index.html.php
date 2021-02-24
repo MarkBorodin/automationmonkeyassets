@@ -13,6 +13,8 @@
 $view->extend('MauticCoreBundle:Default:content.html.php');
 $view['slots']->set('mauticContent', 'user');
 $view['slots']->set('headerTitle', $view['translator']->trans('mautic.user.account.settings'));
+
+// get the current user name
 $user_name = $me->getName();
 ?>
 <!-- start: box layout -->
@@ -46,6 +48,11 @@ $user_name = $me->getName();
                     </a>
                 </li>
                 <?php endif; ?>
+                <li class="list-group-item">
+                    <a href="#packages" class="steps" data-toggle="tab">
+                        <?php echo $view['translator']->trans('mautic.user.account.header.packages'); ?>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -91,7 +98,19 @@ $user_name = $me->getName();
                         <?php echo $authorizedClients; ?>
                     </div>
                 </div>
-            <?php endif; ?>
+            <?php endif;
+
+            /**
+             * @var \Mautic\UserBundle\Controller\ProfileController $monkeyPackages
+             * @var \Mautic\UserBundle\Controller\ProfileController $contactsCount
+             */
+            echo $view->render(
+                'MauticUserBundle:Profile:packages.html.php',
+                array(
+                    'monkeyPackages' => $monkeyPackages,
+                    'contactsCount'  => $contactsCount
+                )
+            ); ?>
         </div>
     </div>
     <!--/ end: container -->
