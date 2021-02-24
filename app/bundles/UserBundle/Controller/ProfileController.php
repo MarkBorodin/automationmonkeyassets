@@ -237,7 +237,7 @@ class ProfileController extends FormController
             'me'                => $me,
             'userForm'          => $form->createView(),
             'authorizedClients' => $this->forward('MauticApiBundle:Client:authorizedClients')->getContent(),
-            'monkeyPackages'    => $this->get( 'mautic.helper.core_parameters' )->get( 'monkey_packages' ), // get access to custom parameter from app/config/local.php
+            'monkeyPackages'    => $this->get( 'mautic.helper.core_parameters' )->get( 'monkey_packages' ), // get access to custom parameter from plugins/MauticMarketingMonkeysContactsLimiterBundle/Config/config.php
             'contactsCount'     => $contacts['count'],
         ];
 
