@@ -8,8 +8,8 @@
  *
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  *
- * @var \Mautic\UserBundle\Controller\ProfileController $monkeyPackages
- * @var \Mautic\UserBundle\Controller\ProfileController $contactsCount
+ * @var \Mautic\LeadBundle\Controller\LeadController $monkeyPackages
+ * @var \Mautic\LeadBundle\Controller\LeadController $contactsCount
  */
 $view->extend('MauticCoreBundle:Default:content.html.php');
 
@@ -26,8 +26,6 @@ $view['slots']->set('mauticContent', 'lead');
 $view['slots']->set('headerTitle', $view['translator']->trans('mautic.lead.leads'));
 // pass the current contacts amount badge to the page header
 $view['slots']->set( 'currentAccountsAmount', $current_accounts_amount_markup );
-
-
 
 $pageButtons = [];
 if ($permissions['lead:leads:create']) {
