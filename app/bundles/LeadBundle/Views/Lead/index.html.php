@@ -1,19 +1,33 @@
 <?php
 
-/*
+/**
  * @copyright   2014 Mautic Contributors. All rights reserved
  * @author      Mautic
  *
  * @link        http://mautic.org
  *
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+ *
+ * @var \Mautic\UserBundle\Controller\ProfileController $monkeyPackages
+ * @var \Mautic\UserBundle\Controller\ProfileController $contactsCount
  */
 $view->extend('MauticCoreBundle:Default:content.html.php');
-$current_accounts_amount_markup = '<div class="account__package__alert account__package__alert--contact alert alert-warning">' . $contactsCount . '/' . $monkeyPackages['baby']['package_limit'] . ' ' . $view['translator']->trans( 'mautic.lead.leads' ) . '</div>';
+
+// get the current package account limit
+$package_limit = $monkeyPackages['baby']['package_limit'];
+
+// create a badge with the current contacts amount
+$current_accounts_amount_markup = '<div class="account__package__alert account__package__alert--contact alert alert-warning">' . $contactsCount . '/' . $package_limit . ' ' . $view['translator']->trans( 'mautic.lead.leads' ) . '</div>';
+
+// create an alert notifying when the contact limit has been reached
+$contacts_reached_alert_markup = '<div class="contacts__package__alert alert alert-danger">' . $view['translator']->trans( 'mautic.user.account.package.alert' ) . '</div>';
 
 $view['slots']->set('mauticContent', 'lead');
 $view['slots']->set('headerTitle', $view['translator']->trans('mautic.lead.leads'));
+// pass the current contacts amount badge to the page header
 $view['slots']->set( 'currentAccountsAmount', $current_accounts_amount_markup );
+
+
 
 $pageButtons = [];
 if ($permissions['lead:leads:create']) {
@@ -69,12 +83,12 @@ $view['slots']->set(
         'MauticCoreBundle:Helper:page_actions.html.php',
         [
             'templateButtons' => [
-                'new' => $permissions['lead:leads:create'],
+                'new' => $contactsCount < $package_limit ? $permissions['lead:leads:create'] : false,
             ],
             'routeBase'     => 'contact',
             'langVar'       => 'lead.lead',
-            'customButtons' => $pageButtons,
-            'extraHtml'     => $extraHtml,
+            'customButtons' => $contactsCount < $package_limit ? $pageButtons : [],
+            'extraHtml'     => $contactsCount < $package_limit ? $extraHtml : $contacts_reached_alert_markup,
         ]
     )
 );
@@ -116,7 +130,7 @@ if ('list' == $indexMode) {
             'searchValue'   => $searchValue,
             'searchHelp'    => 'mautic.lead.lead.help.searchcommands',
             'action'        => $currentRoute,
-            'customButtons' => $toolbarButtons,
+            'customButtons' => $contactsCount < $package_limit ? $toolbarButtons : [],
         ]
     ); ?>
     <div class="page-list">
