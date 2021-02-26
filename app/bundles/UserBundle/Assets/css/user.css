@@ -274,6 +274,39 @@ form[name="passwordreset"] .has-error .help-block {
     text-align: center;
 }
 
+.account__package__label {
+    display: block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.account__package__alert {
+    margin-bottom: 5px;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.account__package__alert--contact {
+    position: relative;
+    top: 7px;
+    width: 60%;
+    clear: both;
+}
+
+.account__package__note {
+    margin-top: 10px;
+    color: #02a3e6;
+}
+
+.account__package__description {
+    margin-bottom: 5px;
+}
+
+.account__package__features-list {
+    padding-left: 15px;
+}
+
 /*-----------
 ## 1280px
 -----------*/
