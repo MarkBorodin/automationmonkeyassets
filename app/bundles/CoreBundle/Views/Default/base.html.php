@@ -1,12 +1,13 @@
 <?php
-
-/*
+/**
  * @copyright   2014 Mautic Contributors. All rights reserved
  * @author      Mautic
  *
  * @link        http://mautic.org
  *
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+ *
+ * @var Mautic\CoreBundle\Controller\CommonController $extendedSettings
  */
 $monkeys_version = true;
 ?>
@@ -26,7 +27,7 @@ $monkeys_version = true;
 
             <!-- start: app-sidebar(right) -->
             <aside class="app-sidebar sidebar-right">
-                <?php echo $view->render('MauticCoreBundle:RightPanel:index.html.php'); ?>
+                <?php echo $view->render('MauticCoreBundle:RightPanel:index.html.php', array( 'extendedSettings' => $extendedSettings )); ?>
             </aside>
             <!--/ end: app-sidebar(right) -->
 
