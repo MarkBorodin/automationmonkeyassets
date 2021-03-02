@@ -41,9 +41,17 @@ $package_baby_monkey = $monkeyPackages['baby']; ?>
                 <div class="form-group col-xs-12">
                     <span class="account__package__label"><?php echo $view['translator']->trans( 'mautic.user.account.package.label.upgrade' ); ?></span>
                     <div class="account__package__button-container">
-                        <button class="btn btn-success" type="button"><?php echo $view['translator']->trans( 'mautic.user.account.package.button.upgrade' ); ?></button>
+                        <a class="btn btn-success"
+                           href="https://www.marketingmonkeys.ch/meet-the-monkeys"
+                           target="_blank">
+                            <?php echo $view['translator']->trans( 'mautic.user.account.package.button.upgrade' ); ?>
+                        </a>
                     </div>
-                    <p class="account__package__note"><?php echo $view['translator']->trans( 'mautic.user.account.package.note' ); ?></p>
+                    <a class="account__package__note"
+                       href="https://www.marketingmonkeys.ch/meet-the-monkeys"
+                       target="_blank">
+                        <?php echo $view['translator']->trans( 'mautic.user.account.package.note' ); ?>
+                    </a>
                 </div>
             </div>
         </div>
