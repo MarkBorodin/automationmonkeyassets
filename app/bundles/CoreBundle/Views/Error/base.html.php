@@ -38,11 +38,11 @@ $message = $view['slots']->get('message', 'mautic.core.error.generic');
             <blockquote class="np break-word">
                 <h1><i class="fa fa-quote-left"></i> <?php echo $view['translator']->trans($message, ['%code%' => $status_code]); ?> <i class="fa fa-quote-right"></i></h1>
                 <h4 class="mt-5"><strong><?php echo $status_code; ?></strong> <?php echo $status_text; ?></h4>
-
-                <footer class="text-right">Mautibot</footer>
             </blockquote>
             <div class="pull-right">
-                <a class="text-muted" href="http://mau.tc/report-issue" target="_new"><?php echo $view['translator']->trans('mautic.core.report_issue'); ?></a>
+                <a class="text-muted"
+                   href="https://www.marketingmonkeys.ch/meet-the-monkeys"
+                   target="_new"><?php echo $view['translator']->trans('mautic.core.report_issue'); ?></a>
             </div>
         </div>
         <?php endif; ?>
