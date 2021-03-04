@@ -10,11 +10,12 @@
  *
  * @var \Mautic\LeadBundle\Controller\LeadController $monkeyPackages
  * @var \Mautic\LeadBundle\Controller\LeadController $contactsCount
+ * @var \Mautic\LeadBundle\Controller\LeadController $currentPackage
  */
 $view->extend('MauticCoreBundle:Default:content.html.php');
 
 // get the current package account limit
-$package_limit = $monkeyPackages['baby']['package_limit'];
+$package_limit = $monkeyPackages[$currentPackage]['package_limit'];
 
 // create a badge with the current contacts amount
 $current_accounts_amount_markup = '<div class="account__package__alert account__package__alert--contact alert alert-warning">' . $contactsCount . '/' . $package_limit . ' ' . $view['translator']->trans( 'mautic.lead.leads' ) . '</div>';

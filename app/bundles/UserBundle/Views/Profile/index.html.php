@@ -103,12 +103,14 @@ $user_name = $me->getName();
             /**
              * @var \Mautic\UserBundle\Controller\ProfileController $monkeyPackages
              * @var \Mautic\UserBundle\Controller\ProfileController $contactsCount
+             * @var \Mautic\UserBundle\Controller\ProfileController $currentPackage
              */
             echo $view->render(
                 'MauticUserBundle:Profile:packages.html.php',
                 array(
                     'monkeyPackages' => $monkeyPackages,
-                    'contactsCount'  => $contactsCount
+                    'contactsCount'  => $contactsCount,
+                    'currentPackage' => $currentPackage
                 )
             ); ?>
         </div>

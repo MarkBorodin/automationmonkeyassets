@@ -6,10 +6,12 @@
  * @link        http://mautic.org
  *
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+ *
+ * @var \Mautic\UserBundle\Controller\ProfileController $monkeyPackages
+ * @var \Mautic\UserBundle\Controller\ProfileController $currentPackage
  */
 
-//get the Baby Monkey package data from the app/config/local.php
-$package_baby_monkey = $monkeyPackages['baby']; ?>
+$package_baby_monkey = $monkeyPackages[$currentPackage]; ?>
 
 <div class="tab-pane fade bdr-rds-0 bdr-w-0" id="packages">
     <div class="pa-md bg-auto bg-light-xs bdr-b">
