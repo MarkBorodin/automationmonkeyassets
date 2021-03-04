@@ -28,7 +28,7 @@ return array(
             ]
         ],
         // change this parameter to true to see hidden settings
-        'extended_settings' => false,
+        'extended_settings' => true,
         'current_package'   => 0 // available values: 0 - Baby Monkey package; 1 - King Kong package; 2 - Godzilla package
     )
 );
