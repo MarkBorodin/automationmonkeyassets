@@ -32,77 +32,79 @@ if (count(array_intersect($fieldKeys, ['mailer_from_name', 'mailer_from_email', 
                 if (isset($fields['mailer_from_name']) || isset($fields['mailer_from_email'])): ?>
                     <hr class="text-muted" />
                 <?php endif;
+            endif;
 
-                if (isset($fields['mailer_transport'])): ?>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <?php echo $view['form']->row($fields['mailer_transport']); ?>
+            if (isset($fields['mailer_transport'])): ?>
+                <div class="row <?php echo !$extendedSettings ? ' panel--hidden': '' ?>">
+                    <div class="col-sm-6">
+                        <?php echo $view['form']->row($fields['mailer_transport']); ?>
+                    </div>
+                    <div class="col-sm-6 pt-lg mt-3" id="mailerTestButtonContainer" data-hide-on='{"config_emailconfig_mailer_transport":["sendmail","mail"]}'>
+                        <div class="button_container">
+                            <?php echo $view['form']->widget($fields['mailer_test_connection_button']); ?>
+                            <?php echo $view['form']->widget($fields['mailer_test_send_button']); ?>
+                            <span class="fa fa-spinner fa-spin hide"></span>
                         </div>
-                        <div class="col-sm-6 pt-lg mt-3" id="mailerTestButtonContainer" data-hide-on='{"config_emailconfig_mailer_transport":["sendmail","mail"]}'>
-                            <div class="button_container">
-                                <?php echo $view['form']->widget($fields['mailer_test_connection_button']); ?>
-                                <?php echo $view['form']->widget($fields['mailer_test_send_button']); ?>
-                                <span class="fa fa-spinner fa-spin hide"></span>
-                            </div>
-                            <div class="col-md-9 help-block">
-                                <div class="status-msg"></div>
-                                <div class="save-config-msg hide text-danger"><?php echo $view['translator']->trans('mautic.email.config.save_to_test'); ?></div>
-                            </div>
+                        <div class="col-md-9 help-block">
+                            <div class="status-msg"></div>
+                            <div class="save-config-msg hide text-danger"><?php echo $view['translator']->trans('mautic.email.config.save_to_test'); ?></div>
                         </div>
                     </div>
-                <?php endif; ?>
-
-                <div class="row">
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_amazon_region', $template); ?>
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_amazon_other_region', $template); ?>
-                </div>
-
-                <div class="row">
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_host', $template); ?>
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_port', $template); ?>
-                </div>
-
-                <div class="row">
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_encryption', $template); ?>
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_auth_mode', $template); ?>
-                </div>
-
-                <div class="row">
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_user', $template); ?>
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_password', $template); ?>
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_api_key', $template); ?>
-                </div>
-
-                <?php if (isset($fields['mailer_transport'])): ?>
-                    <div class="row">
-                        <?php echo $view['form']->rowIfExists($fields, 'mailer_mailjet_sandbox', $template); ?>
-                        <?php echo $view['form']->rowIfExists($fields, 'mailer_mailjet_sandbox_default_mail', $template); ?>
-                    </div>
-                <?php endif; ?>
-
-                <div class="row">
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_custom_headers', $template); ?>
-                </div>
-
-                <?php if (isset($fields['mailer_transport'])): ?>
-                    <hr class="text-muted" />
-                <?php endif; ?>
-
-                <div class="row">
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_type', $template); ?>
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_path', $template); ?>
-                </div>
-
-                <div class="row">
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_msg_limit', $template); ?>
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_time_limit', $template); ?>
-                </div>
-
-                <div class="row">
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_recover_timeout', $template); ?>
-                    <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_clear_timeout', $template); ?>
                 </div>
             <?php endif; ?>
+
+            <div class="row <?php echo !$extendedSettings ? ' panel--hidden': '' ?>">
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_amazon_region', $template); ?>
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_amazon_other_region', $template); ?>
+            </div>
+
+            <div class="row <?php echo !$extendedSettings ? ' panel--hidden': '' ?>">
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_host', $template); ?>
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_port', $template); ?>
+            </div>
+
+            <div class="row <?php echo !$extendedSettings ? ' panel--hidden': '' ?>">
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_encryption', $template); ?>
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_auth_mode', $template); ?>
+            </div>
+
+            <div class="row <?php echo !$extendedSettings ? ' panel--hidden': '' ?>">
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_user', $template); ?>
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_password', $template); ?>
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_api_key', $template); ?>
+            </div>
+
+            <?php if (isset($fields['mailer_transport'])): ?>
+                <div class="row <?php echo !$extendedSettings ? ' panel--hidden': '' ?>">
+                    <?php echo $view['form']->rowIfExists($fields, 'mailer_mailjet_sandbox', $template); ?>
+                    <?php echo $view['form']->rowIfExists($fields, 'mailer_mailjet_sandbox_default_mail', $template); ?>
+                </div>
+            <?php endif; ?>
+
+            <div class="row <?php echo !$extendedSettings ? ' panel--hidden': '' ?>">
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_custom_headers', $template); ?>
+            </div>
+
+            <?php if ( $extendedSettings ):
+                if (isset($fields['mailer_transport'])): ?>
+                    <hr class="text-muted" />
+                <?php endif;
+            endif; ?>
+
+            <div class="row <?php echo !$extendedSettings ? ' panel--hidden': '' ?>">
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_type', $template); ?>
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_path', $template); ?>
+            </div>
+
+            <div class="row <?php echo !$extendedSettings ? ' panel--hidden': '' ?>">
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_msg_limit', $template); ?>
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_time_limit', $template); ?>
+            </div>
+
+            <div class="row <?php echo !$extendedSettings ? ' panel--hidden': '' ?>">
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_recover_timeout', $template); ?>
+                <?php echo $view['form']->rowIfExists($fields, 'mailer_spool_clear_timeout', $template); ?>
+            </div>
         </div>
     </div>
 <?php endif; ?>

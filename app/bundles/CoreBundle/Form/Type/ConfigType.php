@@ -94,13 +94,13 @@ class ConfigType extends AbstractType
                     'class'   => 'form-control',
                     'tooltip' => 'mautic.core.config.form.site.url.tooltip',
                 ],
-                /*'constraints' => [
+                'constraints' => [
                     new NotBlank(
                         [
                             'message' => 'mautic.core.value.required',
                         ]
                     ),
-                ],*/
+                ],
             ]
         );
 
@@ -131,13 +131,13 @@ class ConfigType extends AbstractType
                     'class'   => 'form-control',
                     'tooltip' => 'mautic.core.config.form.cache.path.tooltip',
                 ],
-                /*'constraints' => [
+                'constraints' => [
                     new NotBlank(
                         [
                             'message' => 'mautic.core.value.required',
                         ]
                     ),
-                ],*/
+                ],
             ]
         );
 
@@ -151,13 +151,13 @@ class ConfigType extends AbstractType
                     'class'   => 'form-control',
                     'tooltip' => 'mautic.core.config.form.log.path.tooltip',
                 ],
-                /*'constraints' => [
+                'constraints' => [
                     new NotBlank(
                         [
                             'message' => 'mautic.core.value.required',
                         ]
                     ),
-                ],*/
+                ],
             ]
         );
 
@@ -171,13 +171,13 @@ class ConfigType extends AbstractType
                     'class'   => 'form-control',
                     'tooltip' => 'mautic.core.config.form.image.path.tooltip',
                 ],
-                /*'constraints' => [
+                'constraints' => [
                     new NotBlank(
                         [
                             'message' => 'mautic.core.value.required',
                         ]
                     ),
-                ],*/
+                ],
             ]
         );
 
