@@ -12,10 +12,6 @@ $extendedSettings = $options['extended_settings'];
 if ($item->hasChildren() && 0 !== $options['depth'] && $item->getDisplayChildren()) {
     /* Top menu level start */
     if ($item->isRoot()) {
-        echo '<pre>';
-        var_dump( $options['extended_settings'] );
-        echo '</pre>';
-
         echo '<ul class="nav mt-10" data-toggle="menu">'."\n";
     } else {
         echo "<ul{$view['menu']->parseAttributes($item->getChildrenAttributes())}>\n";
