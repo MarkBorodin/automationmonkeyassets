@@ -22,7 +22,7 @@ Mautic.initializeCalendarModals = function (container) {
 }
 
 Mautic.loadCalendarEvents = function (container) {
-    const currentLang = mQuery( 'html' ).attr( 'lang' );
+    var currentLang = mQuery( 'html' ).attr( 'lang' );
 
     mQuery('#calendar').fullCalendar({
         events: mauticAjaxUrl + "?action=calendar:generateData",
