@@ -2,7 +2,7 @@
 $config = array(
 	'name' => 'German',
 	'locale' => 'de',
-	'author' => 'Mautic Translators',
+	'author' => 'AutomationMonkey Translators',
 );
 
 return $config;
