@@ -14,40 +14,40 @@
     <div class="card-header">
         <h4><?php echo $view->escape($widget->getName()); ?></h4>
         <?php if ($widget->getId()) : ?>
-            <div class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-ellipsis-v"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li>
-                        <a  href="<?php echo $view['router']->url('mautic_dashboard_action', ['objectAction' => 'edit', 'objectId' => $widget->getId()]); ?>"
-                            data-toggle="ajaxmodal"
-                            data-target="#MauticSharedModal"
-                            data-header="<?php echo $view['translator']->trans('mautic.dashboard.widget.header.edit'); ?>">
-                            <i class="fa fa-pencil"></i> <?php echo $view['translator']->trans('mautic.dashboard.widget.header.edit'); ?>
-                        </a>
-                    </li>
-                    <li role="separator" class="divider"></li>
-                    <li  class="dropdown-header">
-                        <?php echo $view['translator']->trans('mautic.dashboard.widget.load.time', ['%time%' => round($widget->getLoadTime() * 1000, 1)]); ?>
-                    </li>
-                    <li  class="dropdown-header">
-                        <?php if ($widget->isCached()) : ?>
-                            <?php echo $view['translator']->trans('mautic.dashboard.widget.data.loaded.from.cache'); ?>
-                        <?php else : ?>
-                            <?php echo $view['translator']->trans('mautic.dashboard.widget.data.loaded.from.database'); ?>
-                        <?php endif; ?>
-                    </li>
-                    <li role="separator" class="divider"></li>
-                    <li>
-                        <a  href="<?php echo $view['router']->url('mautic_dashboard_action', ['objectAction' => 'delete', 'objectId' => $widget->getId()]); ?>"
-                            data-header="<?php echo $view['translator']->trans('mautic.dashboard.widget.header.delete'); ?>"
-                            class="remove-widget">
-                            <i class="fa fa-remove"></i> <?php echo $view['translator']->trans('mautic.dashboard.widget.header.delete'); ?>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <div class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-ellipsis-v"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                    <a  href="<?php echo $view['router']->url('mautic_dashboard_action', ['objectAction' => 'edit', 'objectId' => $widget->getId()]); ?>"
+                        data-toggle="ajaxmodal"
+                        data-target="#MauticSharedModal"
+                        data-header="<?php echo $view['translator']->trans('mautic.dashboard.widget.header.edit'); ?>">
+                        <i class="fa fa-pencil"></i> Edit
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li  class="dropdown-header">
+                    <?php echo $view['translator']->trans('mautic.dashboard.widget.load.time', ['%time%' => round($widget->getLoadTime() * 1000, 1)]); ?>
+                </li>
+                <li  class="dropdown-header">
+                    <?php if ($widget->isCached()) : ?>
+                    <?php echo $view['translator']->trans('mautic.dashboard.widget.data.loaded.from.cache'); ?>
+                    <?php else : ?>
+                    <?php echo $view['translator']->trans('mautic.dashboard.widget.data.loaded.from.database'); ?>
+                    <?php endif; ?>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                    <a  href="<?php echo $view['router']->url('mautic_dashboard_action', ['objectAction' => 'delete', 'objectId' => $widget->getId()]); ?>"
+                        data-header="<?php echo $view['translator']->trans('mautic.dashboard.widget.header.delete'); ?>"
+                        class="remove-widget">
+                        <i class="fa fa-remove"></i> Remove
+                    </a>
+                </li>
+            </ul>
+        </div>
         <?php endif; ?>
     </div>
     <div class="card-body">

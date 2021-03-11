@@ -39,7 +39,7 @@ class ProfileController extends FormController
             'editName'     => $this->get('mautic.security')->isGranted('user:profile:editname'),
             'editUsername' => $this->get('mautic.security')->isGranted('user:profile:editusername'),
             'editPosition' => $this->get('mautic.security')->isGranted('user:profile:editposition'),
-            'editEmail'    => $this->get('mautic.security')->isGranted('user:profile:editemail')
+            'editEmail'    => $this->get('mautic.security')->isGranted('user:profile:editemail'),
         ];
 
         $action = $this->generateUrl('mautic_user_account');

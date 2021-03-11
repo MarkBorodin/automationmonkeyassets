@@ -449,22 +449,7 @@ class ImportController extends FormController
 
         if (self::STEP_UPLOAD_CSV === $step || self::STEP_MATCH_FIELDS === $step) {
             $contentTemplate = 'MauticLeadBundle:Import:new.html.php';
-
-            /** @var \Mautic\LeadBundle\Model\LeadModel $model */
-            $model   = $this->getModel('lead');
-            $results = $model->getEntities([
-                'start'          => 0,
-                'orderByDir'     => 'DESC',
-                'withTotalCount' => true
-            ]);
-
-            $viewParameters  = [
-                'form'           => $form->createView(),
-                'object'         => 'lead' === $object ? 'contacts' : 'companies',
-                'contactsCount'  => $results['count'],
-                'monkeyPackages' => $this->get( 'mautic.helper.core_parameters' )->get( 'monkey_packages' ), // get access to custom parameter from plugins/MauticMarketingMonkeysContactsLimiterBundle/Config/config.php
-                'currentPackage' => $this->get( 'mautic.helper.core_parameters' )->get( 'current_package' ), // get access to custom parameter from plugins/MauticMarketingMonkeysContactsLimiterBundle/Config/config.php
-            ];
+            $viewParameters  = ['form' => $form->createView()];
         } else {
             $contentTemplate = 'MauticLeadBundle:Import:progress.html.php';
             $viewParameters  = [

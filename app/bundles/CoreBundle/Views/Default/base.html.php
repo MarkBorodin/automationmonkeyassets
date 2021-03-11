@@ -67,7 +67,7 @@ $monkeys_version = true;
 
         <script>
             Mautic.onPageLoad('body');
-            <?php if ($app->getEnvironment() === 'dev'): ?>
+            <?php if ('dev' === $app->getEnvironment()): ?>
             mQuery( document ).ajaxComplete(function(event, XMLHttpRequest, ajaxOption){
                 if(XMLHttpRequest.responseJSON && typeof XMLHttpRequest.responseJSON.ignore_wdt == 'undefined' && XMLHttpRequest.getResponseHeader('x-debug-token')) {
                     if (mQuery('[class*="sf-tool"]').length) {
