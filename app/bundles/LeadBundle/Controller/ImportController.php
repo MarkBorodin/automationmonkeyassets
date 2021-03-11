@@ -465,6 +465,19 @@ class ImportController extends FormController
 
             return new JsonResponse(['success' => 1, 'ignore_wdt' => 1]);
         } else {
+            /** @var \Mautic\LeadBundle\Model\LeadModel $model */
+            $model   = $this->getModel('lead');
+            $results = $model->getEntities([
+                'start'          => 0,
+                'orderByDir'     => 'DESC',
+                'withTotalCount' => true
+            ]);
+
+            $viewParameters['contactsCount']  = $results['count'];
+            $viewParameters['pageType']       = 'lead' === $object ? 'contacts' : 'companies';
+            $viewParameters['monkeyPackages'] = $this->get( 'mautic.helper.core_parameters' )->get( 'monkey_packages' ); // get access to custom parameter from plugins/MauticMarketingMonkeysContactsLimiterBundle/Config/config.php
+            $viewParameters['currentPackage'] = $this->get( 'mautic.helper.core_parameters' )->get( 'current_package' ); // get access to custom parameter from plugins/MauticMarketingMonkeysContactsLimiterBundle/Config/config.php
+
             $activeLink = 'lead' === $object ? '#mautic_contact_index' : '#mautic_company_index';
 
             return $this->delegateView(
