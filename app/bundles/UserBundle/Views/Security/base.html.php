@@ -23,7 +23,7 @@
         <?php echo $view->render('MauticCoreBundle:Default:script.html.php'); ?>
         <?php $view['assets']->outputHeadDeclarations(); ?>
     </head>
-    <body>
+    <body style="overflow-y: hidden">
         <section class="user-login-screen"
                  id="main"
                  role="main">
