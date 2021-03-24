@@ -120,6 +120,19 @@ class LeadController extends FormController
         $leads = $results['results'];
         unset($results);
 
+        // get contact entities to count
+        $getContactEntities = $model->getEntities([
+            'start'          => $start,
+            'limit'          => $limit,
+            'filter'         => ['string' => '', 'force' => '!is:anonymous'],
+            'orderBy'        => $orderBy,
+            'orderByDir'     => $orderByDir,
+            'withTotalCount' => true,
+        ]);
+
+        $getContactsCount = $getContactEntities['count'];
+        unset( $getContactEntities );
+
         if ($count && $count < ($start + 1)) {
             //the number of entities are now less then the current page so redirect to the last page
             if (1 === $count) {
@@ -197,7 +210,7 @@ class LeadController extends FormController
                     'noContactList'    => $dncRepository->getChannelList(null, array_keys($leads)),
                     'maxLeadId'        => $maxLeadId,
                     'anonymousShowing' => $anonymousShowing,
-                    'contactsCount'    => $count,
+                    'contactsCount'    => $getContactsCount,
                     'monkeyPackages'   => $this->get( 'mautic.helper.core_parameters' )->get( 'monkey_packages' ), // get access to custom parameter from plugins/MauticMarketingMonkeysContactsLimiterBundle/Config/config.php
                     'currentPackage'   => $this->get( 'mautic.helper.core_parameters' )->get( 'current_package' ), // get access to custom parameter from plugins/MauticMarketingMonkeysContactsLimiterBundle/Config/config.php
                 ],

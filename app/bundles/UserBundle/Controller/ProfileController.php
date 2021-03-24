@@ -230,7 +230,10 @@ class ProfileController extends FormController
         $this->get('session')->set('formProcessed', 0);
 
         // get contacts from Lead Model
-        $contacts = $this->getModel( 'lead' )->getEntities( ['withTotalCount' => true] );
+        $contacts = $this->getModel( 'lead' )->getEntities([
+            'filter'         => ['string' => '', 'force' => '!is:anonymous'],
+            'withTotalCount' => true
+        ]);
 
         $parameters = [
             'permissions'       => $permissions,
