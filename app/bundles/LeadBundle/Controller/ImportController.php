@@ -469,6 +469,7 @@ class ImportController extends FormController
             $model   = $this->getModel('lead');
             $results = $model->getEntities([
                 'start'          => 0,
+                'filter'         => ['string' => '', 'force' => '!is:anonymous'],
                 'orderByDir'     => 'DESC',
                 'withTotalCount' => true
             ]);
