@@ -220,7 +220,7 @@ class CommonController extends Controller implements MauticController
         }
 
         $parameters = (isset($args['viewParameters'])) ? $args['viewParameters'] : [];
-        $template   = $args['viewParameters']['accountDisabled'] ? $args['contentTemplate'] = 'MauticCoreBundle:Default:disabled.html.php' : $args['contentTemplate'];
+        $template   = $args['contentTemplate'];
 
         $code     = (isset($args['responseCode'])) ? $args['responseCode'] : 200;
         $response = new Response('', $code);
