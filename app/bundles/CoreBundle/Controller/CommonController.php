@@ -185,7 +185,7 @@ class CommonController extends Controller implements MauticController
                 'contentTemplate' => $args,
                 'passthroughVars' => [
                     'mauticContent' => strtolower($this->request->get('bundle')),
-                ],
+                ]
             ];
         }
 
@@ -195,6 +195,11 @@ class CommonController extends Controller implements MauticController
 
         if ( !isset( $args['viewParameters']['extendedSettings'] ) ) {
             $args['viewParameters']['extendedSettings'] = (bool) $this->get( 'mautic.helper.core_parameters' )->get( 'extended_settings' );
+        }
+
+        if ( !isset( $args['viewParameters']['accountDisabled'] ) ) {
+            $args['viewParameters']['accountDisabled'] = (bool) $this->get( 'mautic.helper.core_parameters' )->get( 'account_disabled' );
+            $args['viewParameters']['disabledText']    = (string) $this->get( 'mautic.helper.core_parameters' )->get( 'disabled_text' );
         }
 
         if (!isset($args['passthroughVars']['inBuilder']) && $inBuilder = $this->request->get('inBuilder')) {
@@ -215,7 +220,7 @@ class CommonController extends Controller implements MauticController
         }
 
         $parameters = (isset($args['viewParameters'])) ? $args['viewParameters'] : [];
-        $template   = $args['contentTemplate'];
+        $template   = $args['viewParameters']['accountDisabled'] ? $args['contentTemplate'] = 'MauticCoreBundle:Default:disabled.html.php' : $args['contentTemplate'];
 
         $code     = (isset($args['responseCode'])) ? $args['responseCode'] : 200;
         $response = new Response('', $code);

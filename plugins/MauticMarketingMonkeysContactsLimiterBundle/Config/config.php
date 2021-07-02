@@ -29,6 +29,10 @@ return array(
         ],
         // change this parameter to true to see hidden settings
         'extended_settings' => true,
-        'current_package'   => 0 // available values: 0 - Baby Monkey package; 1 - King Kong package; 2 - Godzilla package
+        'current_package'   => 0,    // available values: 0 - Baby Monkey package; 1 - King Kong package; 2 - Godzilla package
+        // if true, disable the current account
+        'account_disabled'  => false,
+        // use HTML markup
+        'disabled_text'     => '<h3>Your account has been blocked</h3><br /><p>Call us for more information: <a href="tel:+41325305443">+41 32 530 54 43</a> <br /> or <a href="https://www.marketingmonkeys.ch/meet-the-monkeys" target="_blank" rel="noreferrer nofollow">contact the support center directly.</a></p>'
     )
 );
