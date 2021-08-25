@@ -252,7 +252,7 @@ Mautic.processPageContent = function (response) {
         if (response.route) {
             //update URL in address bar
             MauticVars.manualStateChange = false;
-            History.pushState(null, "Mautic", response.route);
+            History.pushState(null, "Marketing Monkeys", response.route);
 
             //update Title
             Mautic.generatePageTitle( response.route );
