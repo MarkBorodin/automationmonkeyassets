@@ -150,7 +150,35 @@ if ('index' == $tmpl) {
 
 
 <!--=========================================================================================================================-->
-                                <a href="<?php echo $view['router']->path(
+
+                            <a href="#" data-toggle="modal" data-target="#myModal-<?php echo $item->getId();?>"><i class="fa fa-picture-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+
+                            <div class="modal fade" id="myModal-<?php echo $item->getId();?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="width: 950px;">
+
+                                        <div class="modal-header" style="width: 950px;">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel"><?php echo $item->getName(); ?></h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <iframe src="<?php echo $view['router']->path(
+                                                'mautic_email_preview',
+                                                ['objectId' => $item->getId()]
+                                            ); ?>" width="900" height="1000" frameborder="0"></iframe>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+
+                            <a href="<?php echo $view['router']->path(
                                     'mautic_email_action',
                                     ['objectAction' => 'view', 'objectId' => $item->getId()]
                                 ); ?>"><?php echo $item->getName(); ?></a>
