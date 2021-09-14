@@ -154,10 +154,10 @@ if ('index' == $tmpl) {
                             <a href="#" data-toggle="modal" data-target="#myModal-<?php echo $item->getId();?>"><i class="fa fa-picture-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
 
                             <div class="modal fade" id="myModal-<?php echo $item->getId();?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content" style="width: 950px;">
+                                <div class="modal-dialog" style="top: 5%;">
+                                    <div class="modal-content" style="width: 800px; height:800px;">
 
-                                        <div class="modal-header" style="width: 950px;">
+                                        <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                             <h4 class="modal-title" id="myModalLabel"><?php echo $item->getName(); ?></h4>
                                         </div>
@@ -166,8 +166,9 @@ if ('index' == $tmpl) {
                                             <iframe src="<?php echo $view['router']->path(
                                                 'mautic_email_preview',
                                                 ['objectId' => $item->getId()]
-                                            ); ?>" width="900" height="1000" frameborder="0"></iframe>
+                                            ); ?>" width="100%" height="600px;" frameborder="0"></iframe>
                                         </div>
+
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -197,13 +198,13 @@ if ('index' == $tmpl) {
                                             -ms-transform-origin: top left;
                                             transform-origin: top left;
                                             position: fixed;
-                                            top: 150px;
-                                            left: 800px;
+                                            top: 19.5%;
+                                            left: 40%;
                                             width: 33%;
                                             padding: 0;
                                             overflow: hidden;
                                             z-index: 999999;
-                                            height: 89%;
+                                            height: 80%;
                                             border: 1px ridge rebeccapurple;
                                             pointer-events: none;"
                                             scrolling="no"
