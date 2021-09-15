@@ -166,7 +166,7 @@ if ('index' == $tmpl) {
                                             <iframe src="<?php echo $view['router']->path(
                                                 'mautic_email_preview',
                                                 ['objectId' => $item->getId()]
-                                            ); ?>" width="100%" height="600px;" frameborder="0"></iframe>
+                                            ); ?>" width="100%" height="650px;" frameborder="0"></iframe>
                                         </div>
 
 
@@ -191,21 +191,26 @@ if ('index' == $tmpl) {
                                             -webkit-transform: scale(0.80, 0.80);
                                             -o-transform: scale(0.80, 0.80);
                                             -ms-transform: scale(0.80, 0.80);
-                                            transform: scale(0.80, 0.80);
+                                            /*transform: scale(0.80, 0.80);*/
                                             -moz-transform-origin: top left;
                                             -webkit-transform-origin: top left;
                                             -o-transform-origin: top left;
                                             -ms-transform-origin: top left;
                                             transform-origin: top left;
                                             position: fixed;
-                                            top: 19.5%;
-                                            left: 40%;
+                                            left: 50%;
+                                            top: 50%;
+                                            transform: translate(-50%, -50%);
+                                            /*top: 19.5%;*/
+                                            /*left: 40%;*/
                                             width: 33%;
                                             padding: 0;
                                             overflow: hidden;
                                             z-index: 999999;
-                                            height: 80%;
-                                            border: 1px ridge rebeccapurple;
+                                            height: 70%;
+                                            border: 2px solid rebeccapurple;
+                                            /*border-left: 1px ridge rebeccapurple;*/
+                                            /*border-right: 1px ridge rebeccapurple;*/
                                             pointer-events: none;"
                                             scrolling="no"
                                             src="<?php echo $view['router']->path(
