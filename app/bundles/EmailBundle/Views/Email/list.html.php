@@ -154,8 +154,15 @@ if ('index' == $tmpl) {
                             <a href="#" data-toggle="modal" data-target="#myModal-<?php echo $item->getId();?>"><i class="fa fa-picture-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
 
                             <div class="modal fade" id="myModal-<?php echo $item->getId();?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" style="top: 5%;">
-                                    <div class="modal-content" style="width: 800px; height:800px;">
+                                <div class="modal-dialog" style="
+                                position: fixed;
+                                  left: 50%;
+                                  top: 47%;
+                                  transform: translate(-50%, -50%);">
+                                    
+                                    <div class="modal-content" style="
+                                    width: 800px;
+                                    height:70%;">
 
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
