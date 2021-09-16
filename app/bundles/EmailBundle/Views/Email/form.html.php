@@ -80,8 +80,8 @@ if (!isset($previewUrl)) {
 <!--                            --><?php //echo $view['translator']->trans('mautic.core.form.theme'); ?>
 <!--                        </a>-->
 <!--                    </li>-->
-                    <li>
-                        <a href="#advanced-container" role="tab" data-toggle="tab">
+                    <li class="active">
+                        <a href="#advanced-container" role="tab" data-toggle="tab" aria-expanded="true">
                             <?php echo $view['translator']->trans('mautic.core.advanced'); ?>
                         </a>
                     </li>
@@ -93,20 +93,20 @@ if (!isset($previewUrl)) {
                 </ul>
                 <!--/ tabs controls -->
                 <div class="tab-content pa-md">
-                    <div class="tab-pane fade in active bdr-w-0" id="email-container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?php echo $view['form']->row($form['template']); ?>
-                            </div>
-                        </div>
-                        <?php echo $view->render('MauticCoreBundle:Helper:theme_select.html.php', [
-                            'type'   => 'email',
-                            'themes' => $themes,
-                            'active' => $form['template']->vars['value'],
-                        ]); ?>
-                    </div>
+<!--                    <div class="tab-pane fade bdr-w-0" id="email-container">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-12">-->
+<!--                                --><?php //echo $view['form']->row($form['template']); ?>
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        --><?php //echo $view->render('MauticCoreBundle:Helper:theme_select.html.php', [
+//                            'type'   => 'email',
+//                            'themes' => $themes,
+//                            'active' => $form['template']->vars['value'],
+//                        ]); ?>
+<!--                    </div>-->
 
-                    <div class="tab-pane fade bdr-w-0" id="advanced-container">
+                    <div class="tab-pane fade in active bdr-w-0" id="advanced-container">
                         <div class="row">
                             <div class="col-md-6">
                                 <?php echo $view['form']->row($form['fromName']); ?>
