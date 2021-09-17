@@ -150,6 +150,7 @@ if ('index' == $tmpl) {
 
 
 <!--=========================================================================================================================-->
+                            <?php echo $view->render('MauticCoreBundle:Helper:publishstatus_icon.html.php', ['item' => $item, 'model' => 'email']); ?>&nbsp;&nbsp;&nbsp;
 
                             <a href="#" data-toggle="modal" data-target="#myModal-<?php echo $item->getId();?>"><i class="fa fa-picture-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
 
