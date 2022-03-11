@@ -129,13 +129,29 @@ header("Access-Control-Allow-Credentials: true");
             window.BeePlugin.create(token, config, function(instance) {
                 bee = instance;
                 // You may now use this instance...
-                var template = <?php echo $contenttemplate; ?>; // Any valid template, as JSON object
-                //var templatetempjs = atob(mQuery('textarea.template-builder-html', window.parent.document).html());
-                //var templatetemp = <?php /*echo $activetemplate;*/ ?>;
-                //var templatetempjs = atob(mQuery('textarea.template-builder-html', window.parent.document).val());
 
-                //console.log('template temp',JSON.parse(templatetempjs));
-                bee.start(template);
+                <?php
+                if($template == "new"){
+                    $data = $contenttemplate;
+                }else{
+                    $data = stream_get_contents($contenttemplate);
+                }
+                ?>
+
+                var data = <?php Print($data); ?>
+
+                    // for new:
+                    //var template = <?php //echo $contenttemplate; ?>//; // Any valid template, as JSON object
+
+                    // for template
+                    //var template = <?php //echo stream_get_contents($contenttemplate); ?>//; // Any valid template, as JSON object
+
+                    //var templatetempjs = atob(mQuery('textarea.template-builder-html', window.parent.document).html());
+                    //var templatetemp = <?php /*echo $activetemplate;*/ ?>;
+                    //var templatetempjs = atob(mQuery('textarea.template-builder-html', window.parent.document).val());
+
+                    //console.log('template temp',JSON.parse(templatetempjs));
+                    bee.start(data);
             });
         });
 
