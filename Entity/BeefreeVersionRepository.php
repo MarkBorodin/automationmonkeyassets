@@ -35,6 +35,7 @@ class BeefreeVersionRepository extends CommonRepository
                     'object_id'      => $object_id,
                     'json'      => $json,
                     'type'      => $type,
+                    'preview'      => $content,
                     'content'      => $content,
                 ]
             );
@@ -106,6 +107,27 @@ class BeefreeVersionRepository extends CommonRepository
 
         return $result;
     }
+
+//    /**
+//     * @param $id
+//     */
+//    public function getThemeById($id)
+//    {
+//
+//        $q = $this->createQueryBuilder($this->getTableAlias());
+//        $q->where(
+//            $q->expr()->eq($this->getTableAlias().'.id', ':id')
+//        )
+//            ->setParameter('id', $id);
+//
+//        try {
+//            $result = $q->getQuery()->getSingleResult();
+//        } catch (NoResultException $exception) {
+//            $result = null;
+//        }
+//
+//        return $result;
+//    }
 
     /**
      * @return array

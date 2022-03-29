@@ -37,34 +37,34 @@ class PageType extends BasePageType
     {
         parent::buildForm($builder,$options);
 
-        $customButtons = [
-            [
-                'name'  => 'builder',
-                'label' => 'mautic.core.builder',
-                'attr'  => [
-                    'class'   => 'btn btn-default btn-dnd btn-nospin text-primary btn-builder',
-                    'icon'    => 'fa fa-cube',
-                    'onclick' => "Mautic.launchBuilder('pageform', 'page');",
-                ],
-            ],
-            [
-                'name'  => 'builder_beefree',
-                'label' => 'mautic.beefree.builder',
-                'attr'  => [
-                    'class'   => 'btn btn-default btn-dnd btn-nospin text-success btn-builder',
-                    'icon'    => 'fa fa-beer',
-                    'onclick' => "Mautic.launchCustomBuilder('pageform', 'page');",
-                ],
-            ],
-        ];
-
-        $builder->add(
-            'buttons',
-            'form_buttons',
-            [
-                'pre_extra_buttons' => $customButtons,
-            ]
-        );
+//        $customButtons = [
+//            [
+//                'name'  => 'builder',
+//                'label' => 'mautic.core.builder',
+//                'attr'  => [
+//                    'class'   => 'btn btn-default btn-dnd btn-nospin text-primary btn-builder',
+//                    'icon'    => 'fa fa-cube',
+//                    'onclick' => "Mautic.launchBuilder('pageform', 'page');",
+//                ],
+//            ],
+//            [
+//                'name'  => 'builder_beefree',
+//                'label' => 'mautic.beefree.builder',
+//                'attr'  => [
+//                    'class'   => 'btn btn-default btn-dnd btn-nospin text-success btn-builder',
+//                    'icon'    => 'fa fa-beer',
+//                    'onclick' => "Mautic.launchCustomBuilder('pageform', 'page');",
+//                ],
+//            ],
+//        ];
+//
+//        $builder->add(
+//            'buttons',
+//            'form_buttons',
+//            [
+//                'pre_extra_buttons' => $customButtons,
+//            ]
+//        );
 
     }
 

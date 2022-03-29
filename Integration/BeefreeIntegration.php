@@ -34,6 +34,7 @@ use Symfony\Component\Routing\Router;
 use Symfony\Component\Translation\TranslatorInterface;
 
 
+
 class BeefreeIntegration extends AbstractIntegration
 {
 

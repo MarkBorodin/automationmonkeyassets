@@ -15,6 +15,7 @@ use Mautic\CoreBundle\Helper\EmojiHelper;
 use Mautic\CoreBundle\Helper\InputHelper;
 use MauticPlugin\MauticBeefreeBundle\Entity\BeefreeTheme;
 use MauticPlugin\MauticBeefreeBundle\Entity\BeefreeVersion;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class BeefreeController extends CommonController
@@ -124,6 +125,8 @@ class BeefreeController extends CommonController
                 $contenttemplate->setJson($activetemplate->getContent());
                 break;
             case "undefined":
+                $contenttemplate = null;
+                break;
             case "current":
                 $contenttemplate = null;
                 break;
@@ -160,5 +163,17 @@ class BeefreeController extends CommonController
             ]
         );
 
+    }
+
+    public function previewAction($objectId)
+    {
+        $bfrepo = $this->getDoctrine()->getRepository(BeefreeTheme::class);
+        $theme = $bfrepo->find($objectId);
+        $response = new Response(
+            $theme->getPreviewAsString(),
+            Response::HTTP_OK,
+            ['content-type' => 'text/html']
+        );
+        return $response;
     }
 }

@@ -108,6 +108,7 @@ if (!isset($previewUrl)) {
                                 'bfthemes' => $bfthemes,
                                 'version' => $version,
                                 'active' => $form['template']->vars['value'],
+                                'status' => $header,
                             ]); ?>
                         </div>
                         <div class="tab-pane fade in bdr-w-0" id="email-container">

@@ -24,23 +24,18 @@ return [
             ],
         ],
         'forms'   => [
-            'mautic.form.type.builder.section' => [
-                'class'     => 'Mautic\CoreBundle\Form\Type\BuilderSectionType',
-                'arguments' => 'mautic.factory',
-                'alias'     => 'builder_section',
-            ],
             'mautic.beefree.form.type.email' => [
                 'class' => \MauticPlugin\MauticBeefreeBundle\Form\Type\EmailType::class,
-                'arguments' => 'mautic.factory',
+                'arguments' => ['mautic.factory'],
                 'alias' => 'emailform'
             ],
             'mautic.beefree.form.type.page' => [
                 'class' => \MauticPlugin\MauticBeefreeBundle\Form\Type\PageType::class,
-                'arguments' => 'mautic.factory',
+                'arguments' => ['mautic.factory'],
                 'alias' => 'page'
             ],
             'mautic.form.type.beefree' => array(
-                'class'     => 'MauticPlugin\MauticBeefreeBundle\Form\Type\ConfigType',
+                'class'     => \MauticPlugin\MauticBeefreeBundle\Form\Type\ConfigType::class,
                 'alias'     => 'beefree',
                 'arguments' => array(
                     'mautic.helper.core_parameters',
@@ -105,6 +100,20 @@ return [
                 'path'       => '/beefree/upload',
                 'controller' => 'MauticBeefreeBundle:Ajax:upload',
             ],
+
+            // TODO CUSTOM
+            'mautic_email_save_theme' => [
+                'path'       => '/beefree/theme/save',
+                'controller' => 'MauticBeefreeBundle:BeefreeSaveTheme:saveTheme',
+                'method'     => 'POST',
+            ],
+
+            'beefree_theme_preview' => [
+                'path'       => '/beefree/emails/preview/{objectId}',
+                'controller' => 'MauticBeefreeBundle:Beefree:preview',
+            ],
+            // TODO CUSTOM
+
         ],
         'main' => [
             'mautic_beefree_action' => [

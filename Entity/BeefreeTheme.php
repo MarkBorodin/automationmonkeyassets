@@ -85,12 +85,12 @@ class BeefreeTheme
             ->build();
 
         #TODO
-        /*$builder->createOneToMany('email', 'Email')
-            ->setIndexBy('id')
-            ->mappedBy('email')
-            ->cascadePersist()
-            ->fetchExtraLazy()
-            ->build();*/
+//        $builder->createOneToMany('email', 'Email')
+//            ->setIndexBy('id')
+//            ->mappedBy('email')
+//            ->cascadePersist()
+//            ->fetchExtraLazy()
+//            ->build();
 
     }
 
@@ -145,11 +145,20 @@ class BeefreeTheme
     }
 
     /**
+     * @return mixed
+     */
+    public function getPreviewAsString()
+    {
+        $data = stream_get_contents($this->preview);
+        return $data;
+    }
+
+    /**
      * @param mixed $preview
      */
     public function setPreview($preview)
     {
-        $this->preview= $preview;
+        $this->preview = $preview;
     }
 
     /**

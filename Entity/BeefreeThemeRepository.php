@@ -18,12 +18,14 @@ use Mautic\CoreBundle\Entity\CommonRepository;
 
 class BeefreeThemeRepository extends CommonRepository
 {
+
+    # TODO CUSTOM
     /**
      * @param $hash
      * @param $subject
      * @param $body
      */
-    /*public function saveBeefreeTheme($hash, $name, $preview, $content)
+    public function saveBeefreeTheme($hash, $name, $title, $preview, $content)
     {
         $db = $this->getEntityManager()->getConnection();
 
@@ -33,6 +35,7 @@ class BeefreeThemeRepository extends CommonRepository
                 [
                     'id'           => $hash,
                     'name'         => $name,
+                    'title'        => $title,
                     'preview'      => $preview,
                     'content'      => $content,
                 ]
@@ -44,7 +47,7 @@ class BeefreeThemeRepository extends CommonRepository
 
             return false;
         }
-    }*/
+    }
 
     /**
      * @param string $string  md5 hash or content
@@ -52,7 +55,7 @@ class BeefreeThemeRepository extends CommonRepository
      *
      * @return array
      */
-    /*public function findByHash($string, $subject = null)
+    public function findByHash($string, $subject = null)
     {
         if (null !== $subject) {
             // Combine subject with $string and hash together
@@ -75,7 +78,10 @@ class BeefreeThemeRepository extends CommonRepository
         }
 
         return $result;
-    }*/
+    }
+    # TODO CUSTOM
+
+
     /**
      * @return array
      */
@@ -113,6 +119,8 @@ class BeefreeThemeRepository extends CommonRepository
 
         return $result;
     }
+
+    // we can try to write function which will select a Theme by parameter in case we edit an existing email
     /**
      * @return array
      */

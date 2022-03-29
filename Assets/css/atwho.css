@@ -66,3 +66,19 @@
     font-weight: normal;
 }
 
+
+.box{
+    display: none;
+}
+
+a:hover + .box,.box:hover{
+    display: block;
+    position: absolute;
+    z-index: 100;
+}
+
+.bf-item-text:hover + .box,.box:hover{
+    display: block;
+    position: absolute;
+    z-index: 100;
+}
