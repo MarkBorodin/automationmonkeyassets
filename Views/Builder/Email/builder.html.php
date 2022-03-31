@@ -37,6 +37,10 @@ header("Access-Control-Allow-Credentials: true");
 
 <div id="bee-plugin-container"></div>
 <script type="text/javascript">
+
+    var globalHTML;
+    var globalJSON;
+
     function base64encode(str) {
         return window.btoa(unescape(encodeURIComponent( str )));
     }
@@ -105,7 +109,6 @@ header("Access-Control-Allow-Credentials: true");
                 alert('template saved successfully')
                 console.log('success: ' + mQuery.parseJSON(data.success));
             }).fail(function (jqXHR, textStatus, errorThrown) {
-                // alert('template not saved')
                 console.log(errorThrown);
             });
         }
@@ -143,22 +146,25 @@ header("Access-Control-Allow-Credentials: true");
                     // saveAsTemplate(jsonFile);
                 },
                 onSave: function (jsonFile, htmlFile) {
-                    // let asTemplate = false
-                    let asTemplate = true
+                    console.log('onSave callback')
+                    let asTemplate = false
                     saveAsTemplate(jsonFile, htmlFile, asTemplate);
                     save(htmlFile);
                 },
                 onSaveAsTemplate: function (jsonFile) { // + thumbnail?
-                    bee.save()
-                    // saveAsTemplate(jsonFile);
+                    console.log('onSaveAsTemplate callback')
+                    globalJSON = jsonFile
+                    bee.send()
                 },
                 onAutoSave: function (jsonFile) { // + thumbnail?
                     // console.log(new Date().toISOString() + ' autosaving...');
                     // saveAsTemplate(jsonFile);
                 },
-                /*onSend: function (htmlFile) {
-                    //write your send test function here
-                },*/
+                onSend: function (htmlFile) {
+                    console.log('onSend callback')
+                    saveAsTemplate(globalJSON, htmlFile);
+                },
+
                 /*onError: function (errorMessage) {
                     console.log('onError ', errorMessage);
                 }*/
