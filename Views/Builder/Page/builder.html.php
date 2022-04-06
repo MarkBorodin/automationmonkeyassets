@@ -32,8 +32,13 @@ header("Access-Control-Allow-Credentials: true");
     }
 </style>
 <script src="https://app-rsrc.getbee.io/plugin/BeePlugin.js" type="text/javascript"></script>
+
 <div id="bee-plugin-container"></div>
 <script type="text/javascript">
+
+    var globalHTML;
+    var globalJSON;
+
     function base64encode(str) {
         return window.btoa(unescape(encodeURIComponent( str )));
     }
@@ -58,10 +63,6 @@ header("Access-Control-Allow-Credentials: true");
         link: 'http://[unsubscribe]/'
     }];
 
-    var save = function (content) {
-        console.log('saving ',mQuery('textarea.builder-html', window.parent.document));
-        mQuery('textarea.builder-html', window.parent.document).val(content);
-    };
     function checksum(s) {
         var hash = 0, strlen = s.length, i, c;
         if ( strlen === 0 ) {
@@ -74,9 +75,46 @@ header("Access-Control-Allow-Credentials: true");
         }
         return hash;
     };
-    var saveAsTemplate = function ( content) {
-        //console.log('saving template',checksum(mQuery('textarea.template-builder-html', window.parent.document).val()),checksum(btoa(content)));
+    var saveAsTemplate = function (content, html, asTemplate = true) {
+        console.log('saving template', checksum(mQuery('textarea.template-builder-html', window.parent.document).val()), checksum(btoa(content)));
         mQuery('textarea.template-builder-html', window.parent.document).val(base64encode(content));
+        console.log('save as template - fake')
+
+        if (asTemplate) {
+            var template_name = window.prompt("Enter template name: ");
+            var template_title = window.prompt("Enter template title: ");
+            console.log('save as template - true')
+            mQuery.ajax({
+                type: "POST",
+                url: '<?php echo $view['router']->url('mautic_email_save_theme'); ?>',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                processData: false,
+                async: true,
+                crossDomain: true,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*"
+                },
+                data: JSON.stringify({
+                    'content': content,
+                    'html': html,
+                    'template_name': template_name,
+                    'template_title': template_title,
+                    'asTemplate': asTemplate,
+                }),
+            }).done(function (data) {
+                alert('template saved successfully')
+                console.log('success: ' + mQuery.parseJSON(data.success));
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            });
+        }
+    }
+
+    var save = function (content) {
+        console.log('saving ',mQuery('textarea.builder-html', window.parent.document));
+        mQuery('textarea.builder-html', window.parent.document).val(content);
     };
 
     $.post(endpoint, payload)
@@ -103,22 +141,27 @@ header("Access-Control-Allow-Credentials: true");
                 //roleHash : "", // [optional, default: ""]
                 //rowDisplayConditions : {}, // [optional, default: {}]
                 onChange: function (jsonFile, response) {
-                    saveAsTemplate(jsonFile);
+                    // saveAsTemplate(jsonFile);
                 },
                 onSave: function (jsonFile, htmlFile) {
-                    saveAsTemplate(jsonFile);
+                    console.log('onSave callback')
+                    let asTemplate = false
+                    saveAsTemplate(jsonFile, htmlFile, asTemplate);
                     save(htmlFile);
                 },
                 onSaveAsTemplate: function (jsonFile) { // + thumbnail?
-                    //saveAsTemplate(jsonFile);
+                    console.log('onSaveAsTemplate callback')
+                    globalJSON = jsonFile
+                    bee.send()
                 },
                 onAutoSave: function (jsonFile) { // + thumbnail?
-                    console.log(new Date().toISOString() + ' autosaving...');
-                    //saveAsTemplate(jsonFile);
+                    // console.log(new Date().toISOString() + ' autosaving...');
+                    // saveAsTemplate(jsonFile);
                 },
-                /*onSend: function (htmlFile) {
-                 //write your send test function here
-                 },*/
+                onSend: function (htmlFile) {
+                    console.log('onSend callback')
+                    saveAsTemplate(globalJSON, htmlFile);
+                },
                 /*onError: function (errorMessage) {
                  console.log('onError ', errorMessage);
                  }*/
@@ -129,13 +172,26 @@ header("Access-Control-Allow-Credentials: true");
             window.BeePlugin.create(token, config, function(instance) {
                 bee = instance;
                 // You may now use this instance...
-                var template = <?php echo $contenttemplate; ?>; // Any valid template, as JSON object
+
+                //// TODO CUSTOM
+                <?php
+                if($template == "new" || $template == 'undefined' || $template == 'current'){
+                    $data = $contenttemplate;
+                }else{
+                    $data = stream_get_contents($contenttemplate);
+                }
+                ?>
+                var data = <?php Print($data); ?>
+                //// TODO CUSTOM
+
+
+                //var template = <?php //echo $contenttemplate; ?>//; // Any valid template, as JSON object
                 //var templatetempjs = atob(mQuery('textarea.template-builder-html', window.parent.document).html());
                 //var templatetemp = <?php /*echo $activetemplate;*/ ?>;
                 //var templatetempjs = atob(mQuery('textarea.template-builder-html', window.parent.document).val());
 
                 //console.log('template temp',JSON.parse(templatetempjs));
-                bee.start(template);
+                bee.start(data);
             });
         });
 
