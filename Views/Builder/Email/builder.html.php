@@ -34,7 +34,6 @@ header("Access-Control-Allow-Credentials: true");
 
 <script src="https://app-rsrc.getbee.io/plugin/BeePlugin.js" type="text/javascript"></script>
 
-
 <div id="bee-plugin-container"></div>
 <script type="text/javascript">
 
@@ -85,6 +84,8 @@ header("Access-Control-Allow-Credentials: true");
         console.log('save as template - fake')
 
         if (asTemplate) {
+            var template_name = window.prompt("Enter template name: ");
+            var template_title = window.prompt("Enter template title: ");
             console.log('save as template - true')
             mQuery.ajax({
                 type: "POST",
@@ -101,8 +102,8 @@ header("Access-Control-Allow-Credentials: true");
                 data: JSON.stringify({
                     'content': content,
                     'html': html,
-                    'template': '<?php echo strval($_REQUEST['template']); ?>',
-                    't': <?php echo $_REQUEST['t']; ?>,
+                    'template_name': template_name,
+                    'template_title': template_title,
                     'asTemplate': asTemplate,
                 }),
             }).done(function (data) {

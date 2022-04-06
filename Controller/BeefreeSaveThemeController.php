@@ -6,7 +6,6 @@ use MauticPlugin\MauticBeefreeBundle\Entity\BeefreeTheme;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Mautic\CoreBundle\Controller\CommonController;
-use Symfony\Component\HttpFoundation\Response;
 
 
 class BeefreeSaveThemeController extends CommonController
@@ -19,21 +18,18 @@ class BeefreeSaveThemeController extends CommonController
         // get data
         $data = json_decode($request->getContent());
         $content = $data->content;
-        $html = $data->html;
-        $template = $data->template;
-        $t = $data->t;
+        $preview = $data->html;
+        $template_name = $data->template_name;
+        $template_title = $data->template_title;
 
         // get bfrepo
         $bfrepo = $this->getDoctrine()->getRepository(BeefreeTheme::class);
 
-        // new data
+        // new
         $id = null;
-        $name = $template . ' - ' . date('d/m/Y H:i:s');
-        $title = $template . ' - ' . date('d/m/Y H:i:s');
-        $preview = $html;
-        
+
         // create new theme
-        $bfrepo->saveBeefreeTheme($id, $name, $title, $preview, $content);
+        $bfrepo->saveBeefreeTheme($id, $template_name, $template_title, $preview, $content);
 
         // create response
         $response = new JsonResponse([
