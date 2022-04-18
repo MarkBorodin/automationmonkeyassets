@@ -212,47 +212,6 @@ $isCodeMode = ($active == $codeMode);
             <?php $thumbnailUrl = '';//$view['assets']->getUrl($themeInfo['themesLocalDir'].'/'.$themeKey.'/'.$thumbnailName); ?>
             <div class="col-md-3 beefree-theme-list">
 
-                <a href="<?php echo $view['router']->path(
-                    'beefree_theme_preview',
-                    ['objectId' => $themeInfo->getId()]
-                ); ?>"><h4 style="text-align: center;margin-bottom: 20px;"><?php echo $themeInfo->getTitle(); ?></h4></a>
-
-                <div class="box">
-                    <iframe class="description"
-                            style="
-                                -moz-transform: scale(0.80, 0.80);
-                                -webkit-transform: scale(0.80, 0.80);
-                                -o-transform: scale(0.80, 0.80);
-                                -ms-transform: scale(0.80, 0.80);
-                                /*transform: scale(0.80, 0.80);*/
-                                -moz-transform-origin: top left;
-                                -webkit-transform-origin: top left;
-                                -o-transform-origin: top left;
-                                -ms-transform-origin: top left;
-                                transform-origin: top left;
-                                position: fixed;
-                                left: 50%;
-                                top: 50%;
-                                transform: translate(-50%, -50%);
-                                /*top: 19.5%;*/
-                                /*left: 40%;*/
-                                width: 33%;
-                                padding: 0;
-                                overflow: hidden;
-                                z-index: 999999;
-                                height: 70%;
-                                border: 2px solid rebeccapurple;
-                                /*border-left: 1px ridge rebeccapurple;*/
-                                /*border-right: 1px ridge rebeccapurple;*/
-                                pointer-events: none;"
-                            scrolling="no"
-                            src="<?php echo $view["router"]->path(
-                                "beefree_theme_preview",
-                                ["objectId" => $themeInfo->getId()]
-                            ); ?>">
-                    </iframe>
-                </div>
-
                 <div class="panel panel-default <?php echo $isSelected ? 'beefree-selected' : ''; ?>">
 
                     <div class="panel-body text-center">
