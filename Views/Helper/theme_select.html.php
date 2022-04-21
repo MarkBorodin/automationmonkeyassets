@@ -240,6 +240,7 @@ $isCodeMode = ($active == $codeMode);
                                 echo <<<EOD
                                 <iframe class="description"
                                 scrolling="no"
+                                style="border:0px solid black;"
                                 src="
                                 EOD;
                                 echo $view["router"]->path(

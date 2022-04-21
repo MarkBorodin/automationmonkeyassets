@@ -514,25 +514,25 @@ class EmailType extends AbstractType
             FormButtonsType::class,
             [
                 'pre_extra_buttons' => [
-                    [
-                        'name'  => 'builder',
-                        'label' => 'mautic.core.builder',
-                        'attr'  => [
-                            'class'   => 'btn btn-default btn-dnd btn-nospin text-primary btn-builder',
-                            'icon'    => 'fa fa-cube',
-                            'onclick' => "Mautic.launchBuilder('{$this->getBlockPrefix()}', 'email');",
-                        ],
-                    ],
-
-                    [
-                        'name'  => 'builder_beefree',
-                        'label' => 'mautic.beefree.builder',
-                        'attr'  => [
-                            'class'   => 'btn btn-default btn-dnd btn-nospin text-success btn-builder',
-                            'icon'    => 'fa fa-beer',
-                            'onclick' => "Mautic.launchCustomBuilder('emailform', 'email');",
-                        ],
-                    ],
+//                    [
+//                        'name'  => 'builder',
+//                        'label' => 'mautic.core.builder',
+//                        'attr'  => [
+//                            'class'   => 'btn btn-default btn-dnd btn-nospin text-primary btn-builder',
+//                            'icon'    => 'fa fa-cube',
+//                            'onclick' => "Mautic.launchBuilder('{$this->getBlockPrefix()}', 'email');",
+//                        ],
+//                    ],
+//
+//                    [
+//                        'name'  => 'builder_beefree',
+//                        'label' => 'mautic.beefree.builder',
+//                        'attr'  => [
+//                            'class'   => 'btn btn-default btn-dnd btn-nospin text-success btn-builder',
+//                            'icon'    => 'fa fa-beer',
+//                            'onclick' => "Mautic.launchCustomBuilder('emailform', 'email');",
+//                        ],
+//                    ],
 
                 ],
             ]

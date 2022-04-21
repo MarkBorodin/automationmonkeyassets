@@ -112,6 +112,12 @@ return [
                 'path'       => '/beefree/emails/preview/{objectId}',
                 'controller' => 'MauticBeefreeBundle:Beefree:preview',
             ],
+
+            'beefree_test_email' => [
+                'path'       => '/beefree/emails/send',
+                'controller' => 'MauticBeefreeBundle:BeefreeTestEmail:send',
+                'method'     => 'POST',
+            ],
             // TODO CUSTOM
 
         ],

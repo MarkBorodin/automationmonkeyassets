@@ -39,6 +39,7 @@ header("Access-Control-Allow-Credentials: true");
 
     var globalHTML;
     var globalJSON;
+    var isTemplate;
 
     function base64encode(str) {
         return window.btoa(unescape(encodeURIComponent( str )));
@@ -77,47 +78,77 @@ header("Access-Control-Allow-Credentials: true");
         return hash;
     };
 
-    var saveAsTemplate = function (content, html, asTemplate = true) {
+    var saveAsTemplate = function (content, html) {
 
         console.log('saving template', checksum(mQuery('textarea.template-builder-html', window.parent.document).val()), checksum(btoa(content)));
         mQuery('textarea.template-builder-html', window.parent.document).val(base64encode(content));
         console.log('save as template - fake')
+        isTemplate = false
 
-        if (asTemplate) {
-            var template_name = window.prompt("Enter template name: ");
-            var template_title = window.prompt("Enter template title: ");
-            console.log('save as template - true')
-            mQuery.ajax({
-                type: "POST",
-                url: '<?php echo $view['router']->url('mautic_email_save_theme'); ?>',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                processData: false,
-                async: true,
-                crossDomain: true,
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*"
-                },
-                data: JSON.stringify({
-                    'content': content,
-                    'html': html,
-                    'template_name': template_name,
-                    'template_title': template_title,
-                    'asTemplate': asTemplate,
-                }),
-            }).done(function (data) {
-                alert('template saved successfully')
-                console.log('success: ' + mQuery.parseJSON(data.success));
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                console.log(errorThrown);
-            });
-        }
+        var template_name = window.prompt("Enter template name: ");
+        var template_title = window.prompt("Enter template title: ");
+        console.log('save as template - true')
+        mQuery.ajax({
+            type: "POST",
+            url: '<?php echo $view['router']->url('mautic_email_save_theme'); ?>',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            processData: false,
+            async: true,
+            crossDomain: true,
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            },
+            data: JSON.stringify({
+                'content': content,
+                'html': html,
+                'template_name': template_name,
+                'template_title': template_title,
+            }),
+        }).done(function (data) {
+            alert('template saved successfully')
+            console.log('success: ' + mQuery.parseJSON(data.success));
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        });
     }
+
+    var fakeSave = function (content) {
+        console.log('fake saving ', mQuery('textarea.builder-html', window.parent.document));
+        mQuery('textarea.template-builder-html', window.parent.document).val(base64encode(content));
+    };
 
     var save = function (content) {
         console.log('saving ', mQuery('textarea.builder-html', window.parent.document));
         mQuery('textarea.builder-html', window.parent.document).val(content);
+    };
+
+    var sendTestEmail = function (html){
+        console.log('send test email')
+        var toEmail = window.prompt("What email address should the test email be sent to?");
+        mQuery.ajax({
+            type: "POST",
+            url: '<?php echo $view['router']->url('beefree_test_email'); ?>',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            processData: false,
+            async: true,
+            crossDomain: true,
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            },
+            data: JSON.stringify({
+                'html': html,
+                'toEmail': toEmail,
+            }),
+        }).done(function (data) {
+            alert('email sent successfully')
+            console.log('success: ' + mQuery.parseJSON(data.success));
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+        });
     };
 
     $.post(endpoint, payload)
@@ -148,22 +179,25 @@ header("Access-Control-Allow-Credentials: true");
                 },
                 onSave: function (jsonFile, htmlFile) {
                     console.log('onSave callback')
-                    let asTemplate = false
-                    saveAsTemplate(jsonFile, htmlFile, asTemplate);
+                    // let asTemplate = false
+                    // saveAsTemplate(jsonFile, htmlFile, asTemplate);
+                    fakeSave(jsonFile);
                     save(htmlFile);
+                    if (isTemplate){
+                        saveAsTemplate(jsonFile, htmlFile)
+                    }
                 },
                 onSaveAsTemplate: function (jsonFile) { // + thumbnail?
                     console.log('onSaveAsTemplate callback')
-                    globalJSON = jsonFile
-                    bee.send()
+                    isTemplate = true
+                    bee.save()
                 },
                 onAutoSave: function (jsonFile) { // + thumbnail?
                     // console.log(new Date().toISOString() + ' autosaving...');
                     // saveAsTemplate(jsonFile);
                 },
                 onSend: function (htmlFile) {
-                    console.log('onSend callback')
-                    saveAsTemplate(globalJSON, htmlFile);
+                    sendTestEmail(htmlFile)
                 },
 
                 /*onError: function (errorMessage) {
