@@ -85,8 +85,11 @@ header("Access-Control-Allow-Credentials: true");
         console.log('save as template - fake')
         isTemplate = false
 
-        var template_name = window.prompt("Enter template name: ");
-        var template_title = window.prompt("Enter template title: ");
+        var template_name_text = '<?php echo $view['translator']->trans('mautic.beefree.template.name'); ?>';
+        var template_title_text = '<?php echo $view['translator']->trans('mautic.beefree.template.title'); ?>';
+
+        var template_name = window.prompt(template_name_text);
+        var template_title = window.prompt(template_title_text);
         console.log('save as template - true')
         mQuery.ajax({
             type: "POST",
@@ -107,7 +110,8 @@ header("Access-Control-Allow-Credentials: true");
                 'template_title': template_title,
             }),
         }).done(function (data) {
-            alert('template saved successfully')
+            var template_saved = '<?php echo $view['translator']->trans('mautic.beefree.template.saved'); ?>'
+            alert(template_saved)
             console.log('success: ' + mQuery.parseJSON(data.success));
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.log(errorThrown);

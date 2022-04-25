@@ -147,7 +147,7 @@ class BeefreeIntegration extends AbstractIntegration
                 'beefree_api_secret_page',
                 TextType::class,
                 [
-                    'label'      => 'mautic.beefree.config.page.api.secret',
+                    'label'      => 'mautic.beefree.config.page.api.secret.page',
                     'label_attr' => ['class' => 'control-label'],
                     'attr'       => [
                         'class' => 'form-control',

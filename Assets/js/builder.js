@@ -64,7 +64,7 @@ Mautic.loadNewWindowTemp =  function (options) {
     toolbar.style.border = "0";
 
     var buttonexit = document.createElement('button');
-    buttonexit.innerText = "FERMER";
+    buttonexit.innerText = "CLOSE";
     buttonexit.className = "btn btn-primary";
     buttonexit.style.float = 'right';
     buttonexit.style.margin = '12px';
