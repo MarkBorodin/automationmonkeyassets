@@ -140,9 +140,19 @@ class BeefreeController extends CommonController
         $translator = $this->get('translator');
         $locale = $translator->getLocale();
         //transform to beefree format
+        $closeButton = 'CLOSE';
         switch ($locale){
             case 'fr':
                 $locale = 'fr-FR';
+                $closeButton = 'FERMER';
+                break;
+            case 'en':
+                $locale = 'en-US';
+                $closeButton = 'CLOSE';
+                break;
+            case 'de':
+                $locale = 'de-DE';
+                $closeButton = 'Schliessen';
                 break;
         }
         $builderCode = $this->renderView('MauticBeefreeBundle:'.$templateDirectory.':builder.html.php', [
@@ -152,6 +162,7 @@ class BeefreeController extends CommonController
             'template' => $template,
             'username' => $featureSettings['beefree_user_name'],
             'locale' => $locale,
+            'closeButton' => $closeButton,
             'contenttemplate'  => ($contenttemplate)?$contenttemplate->getJson():'JSON.parse(base64decode(mQuery(\'textarea.template-builder-html\', window.parent.document).val()))',
         ]);
         $templateForBuilder = str_replace('</body>', $builderCode.$hiddenTemplate.'</body>', $templateForBuilder);

@@ -36,6 +36,14 @@ header("Access-Control-Allow-Credentials: true");
 <div id="bee-plugin-container"></div>
 <script type="text/javascript">
 
+    function changeButton(button_id='close_button')
+    {
+        var el = window.parent.document.getElementById(button_id);
+        el.innerText = "<?php echo $closeButton; ?>";
+    }
+
+    changeButton('close_button')
+
     var globalHTML;
     var globalJSON;
     var isTemplate;

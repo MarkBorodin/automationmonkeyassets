@@ -64,11 +64,12 @@ Mautic.loadNewWindowTemp =  function (options) {
     toolbar.style.border = "0";
 
     var buttonexit = document.createElement('button');
-    buttonexit.innerText = "CLOSE";
+    buttonexit.innerText = "Schliessen";
     buttonexit.className = "btn btn-primary";
     buttonexit.style.float = 'right';
     buttonexit.style.margin = '12px';
     buttonexit.style.padding = '6px 12px';
+    buttonexit.id = 'close_button'
     buttonexit.onclick = function () {
         Mautic.closeNewWindowTemp();
     };
