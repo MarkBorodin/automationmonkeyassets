@@ -138,7 +138,8 @@ header("Access-Control-Allow-Credentials: true");
 
     var sendTestEmail = function (html){
         console.log('send test email')
-        var toEmail = window.prompt("What email address should the test email be sent to?");
+        var question = '<?php echo $view['translator']->trans('mautic.beefree.test.email.question'); ?>'
+        var toEmail = window.prompt(question);
         mQuery.ajax({
             type: "POST",
             url: '<?php echo $view['router']->url('beefree_test_email'); ?>',
@@ -156,7 +157,8 @@ header("Access-Control-Allow-Credentials: true");
                 'toEmail': toEmail,
             }),
         }).done(function (data) {
-            alert('email sent successfully')
+            var sent = '<?php echo $view['translator']->trans('mautic.beefree.test.email.sent'); ?>'
+            alert(sent)
             console.log('success: ' + mQuery.parseJSON(data.success));
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.log(errorThrown);
