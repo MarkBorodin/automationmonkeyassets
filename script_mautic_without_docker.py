@@ -1,9 +1,9 @@
 import os
 import time
 
-import requests
+# import requests
 
-from data import url, username
+# from data import url, username
 from commands_mautic_without_docker import *
 
 commands_list_1 = [
