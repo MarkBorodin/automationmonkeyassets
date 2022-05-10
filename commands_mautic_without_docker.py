@@ -7,7 +7,7 @@ clone_from_git = 'git clone -b beefree https://github.com/MarkBorodin/automation
 
 cp_all_files = 'cp -r automationmonkeyassets/. /var/www/html/'
 
-copy_beefree_bundle = 'cp -r /MauticBeefreeBundle /var/www/html/plugins/'
+copy_beefree_bundle = 'cp -r ./MauticBeefreeBundle /var/www/html/plugins/'
 
 copy_email_type_form = 'cp ./automationmonkeyassets/MauticBeefreeBundle/EmailType.php /var/www/html/app/bundles/EmailBundle/Form/Type/EmailType.php'
 
