@@ -8,7 +8,7 @@ from commands_mautic_without_docker import *
 
 commands_list_1 = [
     install_plugins, clear_cache, copy_beefree_bundle, clear_cache, reload_plugins,
-    copy_email_type_form, copy_page_type_form, chown, clear_cache
+    copy_email_type_form, copy_page_type_form, chown, clear_cache, chown
 ]
 
 for command in commands_list_1:
