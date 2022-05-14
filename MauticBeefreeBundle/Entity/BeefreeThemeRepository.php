@@ -25,7 +25,7 @@ class BeefreeThemeRepository extends CommonRepository
      * @param $subject
      * @param $body
      */
-    public function saveBeefreeTheme($hash, $name, $title, $preview, $content)
+    public function saveBeefreeTheme($id, $name, $title, $preview, $content)
     {
         $db = $this->getEntityManager()->getConnection();
 
@@ -33,7 +33,7 @@ class BeefreeThemeRepository extends CommonRepository
             $db->insert(
                 MAUTIC_TABLE_PREFIX.'beefree_theme',
                 [
-                    'id'           => $hash,
+                    'id'           => $id,
                     'name'         => $name,
                     'title'        => $title,
                     'preview'      => $preview,
@@ -48,6 +48,35 @@ class BeefreeThemeRepository extends CommonRepository
             return false;
         }
     }
+
+
+    # TODO CUSTOM
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function deleteBeefreeTheme($id)
+    {
+        $db = $this->getEntityManager()->getConnection();
+
+        try {
+            $db->delete(
+                MAUTIC_TABLE_PREFIX.'beefree_theme',
+                [
+                    'id'           => $id,
+                ]
+            );
+
+            return true;
+        } catch (\Exception $e) {
+            error_log($e);
+
+            return false;
+        }
+    }
+
+
 
     /**
      * @param string $string  md5 hash or content

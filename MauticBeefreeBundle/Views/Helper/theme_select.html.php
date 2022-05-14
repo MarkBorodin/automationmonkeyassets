@@ -210,9 +210,44 @@ $isCodeMode = ($active == $codeMode);
             ?>
 
             <?php $thumbnailUrl = '';//$view['assets']->getUrl($themeInfo['themesLocalDir'].'/'.$themeKey.'/'.$thumbnailName); ?>
+
             <div class="col-md-3 beefree-theme-list">
 
                 <div class="panel panel-default <?php echo $isSelected ? 'beefree-selected' : ''; ?>">
+
+                    <script TYPE="text/javascript">
+
+                        function delete_template(link, obj)
+                        {
+                            if (confirm('<?php echo $view['translator']->trans('mautic.beefree.template.delete.question'); ?>'))
+                            {
+                                mQuery.ajax(
+                                {
+                                    url: '<?php echo $view['router']->url('beefree_mautic_email_delete_theme'); ?>',
+                                    type: "POST",
+                                    dataType: "json",
+                                    async: true,
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "Access-Control-Allow-Origin": "*",
+                                    },
+                                    data: JSON.stringify({
+                                        'id': obj,
+                                    }),
+                                }).done(function (data) {
+                                    alert('<?php echo $view['translator']->trans('mautic.beefree.template.delete.success'); ?>')
+                                    document.location.reload();
+                                }).fail(function (data) {
+                                    alert('<?php echo $view['translator']->trans('mautic.beefree.template.delete.failure'); ?>')
+                                    document.location.reload();
+                                });
+
+                            } else {
+                                // Do nothing!
+                            }
+                        }
+                    </script>
+
 
                     <div class="panel-body text-center">
 
@@ -273,6 +308,16 @@ $isCodeMode = ($active == $codeMode);
                             <a href="#" type="button" data-theme-beefree="<?php echo $themeKey; ?>" class="bf-item-link select-theme-link btn-dnd btn-nospin text-success btn-builder btn-copy " onclick="Mautic.launchCustomBuilder('emailform', 'email',this);">
                             </a>
                         </div>
+
+                        <br>
+
+                        <button onclick="return delete_template(this, <?php echo $themeInfo->getId(); ?>)"
+                            type="button"
+                            class="btn btn-secondary btn-lg btn-block"
+                            style="background: #A885F9; color: #F5FDFE;">
+                            <?php echo $view['translator']->trans('mautic.beefree.template.delete.button'); ?>
+                        </button>
+
                     </div>
                 </div>
             </div>

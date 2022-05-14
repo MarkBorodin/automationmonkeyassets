@@ -108,6 +108,13 @@ return [
                 'method'     => 'POST',
             ],
 
+            'beefree_mautic_email_delete_theme' => [
+                'path'       => '/beefree/theme/delete/{objectId}',
+                'controller' => 'MauticBeefreeBundle:BeefreeDeleteTheme:deleteTheme',
+                'method'     => 'POST',
+//                'method'     => 'GET',
+            ],
+
             'beefree_theme_preview' => [
                 'path'       => '/beefree/emails/preview/{objectId}',
                 'controller' => 'MauticBeefreeBundle:Beefree:preview',
