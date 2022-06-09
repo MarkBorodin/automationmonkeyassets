@@ -87,7 +87,6 @@ header("Access-Control-Allow-Credentials: true");
 
     var saveAsTemplate = function (content, html) {
 
-        console.log('saving template', checksum(mQuery('textarea.template-builder-html', window.parent.document).val()), checksum(btoa(content)));
         mQuery('textarea.template-builder-html', window.parent.document).val(base64encode(content));
         console.log('save as template - fake')
         isTemplate = false
