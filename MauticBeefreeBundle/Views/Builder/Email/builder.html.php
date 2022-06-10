@@ -45,6 +45,16 @@ header("Access-Control-Allow-Credentials: true");
 
     changeButton('close_button')
 
+
+    function saveInParent()
+    {
+        console.log('saveInParent func: start')
+        var parentButtonID = 'emailform_buttons_apply_toolbar';
+        var parentButton = window.parent.document.getElementById(parentButtonID);
+        parentButton.click();
+        console.log('saveInParent func: end')
+    }
+
     var globalHTML;
     var globalJSON;
     var isTemplate;
@@ -199,6 +209,8 @@ header("Access-Control-Allow-Credentials: true");
                     if (isTemplate){
                         saveAsTemplate(jsonFile, htmlFile)
                     }
+                    console.log('trying to call saveInParent func')
+                    saveInParent()
                 },
                 onSaveAsTemplate: function (jsonFile) { // + thumbnail?
                     console.log('onSaveAsTemplate callback')
