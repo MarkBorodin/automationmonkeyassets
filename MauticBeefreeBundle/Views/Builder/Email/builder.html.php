@@ -37,6 +37,7 @@ header("Access-Control-Allow-Credentials: true");
 <div id="bee-plugin-container"></div>
 <script type="text/javascript">
 
+
     function changeButton(button_id='close_button')
     {
         var el = window.parent.document.getElementById(button_id);
@@ -174,6 +175,31 @@ header("Access-Control-Allow-Credentials: true");
         });
     };
 
+    var onPreviewAction = function (status) {
+        console.log('start onPreviewActionv func')
+        console.log(status)
+        if (status == true) {
+            window.parent.document.getElementById('close_button').style.visibility = 'hidden';
+        }
+        else {
+            window.parent.document.getElementById('close_button').style.visibility = 'visible';
+        }
+        console.log('stop onPreviewActionv func')
+    };
+
+    var onWarningAction = function (errorMessage) {
+        console.log('start onWarningAction func')
+        console.log(errorMessage)
+        console.log('stop onWarningAction func')
+    };
+
+    var onErrorAction = function (errorMessage) {
+        console.log('start onErrorAction func')
+        console.log(errorMessage)
+        console.log('stop onErrorAction func')
+    };
+
+
     $.post(endpoint, payload)
         .done(function(data) {
             var token = data;
@@ -225,9 +251,23 @@ header("Access-Control-Allow-Credentials: true");
                     sendTestEmail(htmlFile)
                 },
 
-                /*onError: function (errorMessage) {
-                    console.log('onError ', errorMessage);
-                }*/
+                onTogglePreview: function (status) {
+                    console.log('start onPreview func')
+                    onPreviewAction(status)
+                    console.log('stop onPreview func')
+                },
+
+                onWarning: function(errorMessage) {
+                    console.log('start onWarning func')
+                    onWarningAction(errorMessage)
+                    console.log('start onWarning func')
+                },
+
+                onError: function (errorMessage) {
+                    console.log('start onError func')
+                    onErrorAction(errorMessage)
+                    console.log('start onError func')
+                },
             }
 
             // Call the "create" method:
@@ -258,6 +298,7 @@ header("Access-Control-Allow-Credentials: true");
                 // var templatetempjs = atob(mQuery('textarea.template-builder-html', window.parent.document).val());
 
                 //console.log('template temp',JSON.parse(templatetempjs));
+
                 bee.start(data);
             });
         });
