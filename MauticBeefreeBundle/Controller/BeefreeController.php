@@ -140,19 +140,19 @@ class BeefreeController extends CommonController
         $translator = $this->get('translator');
         $locale = $translator->getLocale();
         //transform to beefree format
-        $closeButton = 'CLOSE';
+        $closeButton = 'CLOSE BEEFREE';
         switch ($locale){
             case 'fr':
                 $locale = 'fr-FR';
-                $closeButton = 'FERMER';
+                $closeButton = 'FERMER BEEFREE';
                 break;
             case 'en':
                 $locale = 'en-US';
-                $closeButton = 'CLOSE';
+                $closeButton = 'CLOSE BEEFREE';
                 break;
             case 'de':
                 $locale = 'de-DE';
-                $closeButton = 'Schliessen';
+                $closeButton = 'SCHLIESSEN BEEFREE';
                 break;
         }
         $builderCode = $this->renderView('MauticBeefreeBundle:'.$templateDirectory.':builder.html.php', [

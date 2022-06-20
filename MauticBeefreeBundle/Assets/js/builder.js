@@ -18,9 +18,13 @@ Mautic.launchCustomBuilder = function (formName, actionName,elem) {
  * @param options
  */
 Mautic.closeNewWindowTemp =  function (options) {
-    console.log('close editor');
-    var beefree = document.getElementById('beefree');
-    beefree.remove();
+    var text = 'Close builder?';
+    if (confirm(text))
+    {
+        console.log('close editor');
+        var beefree = document.getElementById('beefree');
+        beefree.remove();
+    }
 }
 
 /**
@@ -65,7 +69,7 @@ Mautic.loadNewWindowTemp =  function (options) {
 
     var buttonexit = document.createElement('button');
     buttonexit.innerText = "Schliessen";
-    buttonexit.className = "btn btn-primary";
+    buttonexit.className = "btn btn-danger";
     buttonexit.style.float = 'right';
     buttonexit.style.margin = '12px -20px';
     buttonexit.style.padding = '6px 12px';
