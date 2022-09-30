@@ -7,6 +7,9 @@
  * @license     GNU/AGPLv3 http://www.gnu.org/licenses/agpl.html
  */
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Credentials: true");
+
 use Symfony\Component\Form\FormView;
 
 $view->extend('MauticCoreBundle:Default:content.html.php');
@@ -65,6 +68,45 @@ if (!isset($previewUrl)) {
 }
 
 ?>
+
+<!--CUSTOM-->
+<script type="text/javascript">
+    var saveNewEmailFrom = function () {
+
+        console.log('start saveNewEmailFrom')
+
+        var addNewText = '<?php echo $view['translator']->trans('mautic.email.from_email.add.text'); ?>';
+
+        var newEmail = window.prompt(addNewText);
+
+        console.log(newEmail)
+        mQuery.ajax({
+            type: "POST",
+            url: '<?php echo $view['router']->url('mautic_from_address_new'); ?>',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            processData: false,
+            async: true,
+            crossDomain: true,
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            },
+            data: JSON.stringify({
+                'newEmail': newEmail,
+            }),
+        }).done(function (data) {
+            var template_saved = '<?php echo $view['translator']->trans('mautic.email.from_email.add.saved'); ?>'
+            alert(template_saved)
+            console.log('success: ' + mQuery.parseJSON(data.parametersAsArray));
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log('error!');
+            console.log(errorThrown);
+        });
+    }
+</script>
+<!--CUSTOM-->
+
 
 <?php echo $view['form']->start($form, ['attr' => $attr]); ?>
     <div class="box-layout">
@@ -129,6 +171,11 @@ if (!isset($previewUrl)) {
                                 <div class="col-md-6">
                                     <?php echo $view['form']->row($form['fromName']); ?>
                                     <?php echo $view['form']->row($form['fromAddress']); ?>
+                                    <!--CUSTOM-->
+                                    <?php echo $view['form']->row($form['addButtonFromAddress']); ?>
+                                    <br>
+                                    <br>
+                                    <!--CUSTOM-->
                                     <?php echo $view['form']->row($form['replyToAddress']); ?>
                                     <?php echo $view['form']->row($form['bccAddress']); ?>
                                     <?php echo $view['content']->getCustomContent('email.settings.advanced', $mauticTemplateVars); ?>
